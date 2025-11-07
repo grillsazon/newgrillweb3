@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title id="docTitle">Tu Marca - Pedidos</title>
+  <meta name="description" content="Promos, combos, menú y extras. Pide por WhatsApp.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <img src="assets/logo.svg" class="logo" alt="logo">
+    <strong id="brandName">Tu Marca</strong>
+  </div>
+  <nav class="nav" id="dynNav"></nav>
+  <div class="actions">
+    <input id="search" class="input search" type="search" placeholder="Buscar plato...">
+    <button id="openCart" class="btn">Carrito (<span id="cartCount">0</span>)</button>
+    <a href="admin.html" class="btn ghost" title="Admin (PIN)">Admin</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="inner">
+    <h1 id="heroTitle">Sabor al carbón, listo para ti</h1>
+    <p id="heroSub">Haz tu pedido ahora. Entrega o pickup.</p>
+    <a href="#menu" class="btn lg">Ver menú</a>
+  </div>
+</section>
+
+<main id="dynMain"></main>
+
+<footer class="footer">
+  <div><strong id="footerBrand">Tu Marca</strong> — Todos los derechos reservados</div>
+  <div class="links">
+    <a id="footerPhone" href="#">Tel: +507 6000-0000</a>
+    <a id="footerInsta" href="#" target="_blank" rel="noopener">Instagram</a>
+    <a id="footerFb" href="#" target="_blank" rel="noopener">Facebook</a>
+  </div>
+</footer>
+
+<!-- Drawer Carrito -->
+<aside id="cart" class="drawer" aria-hidden="true">
+  <header><h3>Tu carrito</h3><button id="closeCart" class="btn ghost" aria-label="Cerrar">&times;</button></header>
+  <div id="cartItems" class="items"></div>
+  <footer>
+    <div class="row"><span>Total</span><strong id="cartTotal">$0.00</strong></div>
+    <button id="checkout" class="btn lg">Pedir por WhatsApp</button>
+    <button id="keepShopping" class="btn ghost">Seguir comprando</button>
+    <small class="note">El carrito se guarda automáticamente.</small>
+  </footer>
+</aside>
+
+<a id="waFloat" class="whatsapp" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">🟢</a>
+
+<script>
+  window.__PIN_DEFAULT__ = "0000";
+</script>
+<script src="publicApp.js"></script>
+</body>
+</html>

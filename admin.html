@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panel — Admin</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="login" class="login">
+  <div class="box">
+    <h2>Panel (PIN)</h2>
+    <input id="pinInput" class="input" type="password" placeholder="Ingresa tu PIN">
+    <button id="pinBtn" class="btn lg">Entrar</button>
+    <small class="note">PIN por defecto: <kbd>0000</kbd>. Puedes cambiarlo en Ajustes.</small>
+  </div>
+</div>
+
+<div id="panel" hidden>
+  <header class="topbar">
+    <div class="brand">
+      <img src="assets/logo.svg" class="logo" alt="logo">
+      <strong>Admin</strong>
+    </div>
+    <div class="actions">
+      <button id="btnExport" class="btn">Exportar backup</button>
+      <label class="btn ghost">Importar <input id="fileImport" type="file" accept="application/json" hidden></label>
+      <a href="index.html" class="btn ghost">Ver público</a>
+      <button id="btnLogout" class="btn danger">Salir</button>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="toolbar">
+      <div class="flex">
+        <button data-tab="promos" class="btn">Promos</button>
+        <button data-tab="combos" class="btn">Combos</button>
+        <button data-tab="menu" class="btn">Menú</button>
+        <button data-tab="bebidas" class="btn">Bebidas</button>
+        <button data-tab="extras" class="btn">Extras</button>
+        <button data-tab="ajustes" class="btn warning">Ajustes</button>
+        <button data-tab="secciones" class="btn">Secciones</button>
+      </div>
+      <div class="flex">
+        <input id="adminSearch" class="input" placeholder="Buscar ítem...">
+        <button id="addItem" class="btn ok">Nuevo ítem</button>
+      </div>
+    </div>
+
+    <div class="panels" id="itemsPanel">
+      <div class="panel">
+        <h3>Ítems</h3>
+        <div id="itemList" class="list"></div>
+      </div>
+      <div class="panel">
+        <h3>Editar</h3>
+        <form id="itemForm" class="grid" style="grid-template-columns:1fr 1fr;gap:.6rem">
+          <input type="hidden" id="f_id">
+          <label>Nombre<input id="f_name" class="input"></label>
+          <label>Precio<input id="f_price" class="input" type="number" step="0.01"></label>
+          <label style="grid-column:1/-1">Descripción<textarea id="f_desc" class="textarea" rows="4"></textarea></label>
+          <label>Sección<select id="f_section" class="select"></select></label>
+          <label>Pestaña (número)<input id="f_tab" class="input" type="number" min="1" step="1" placeholder="1"></label>
+          <label>URL de imagen<input id="f_img" class="input" placeholder="https://..."></label>
+          <div style="grid-column:1/-1" class="flex">
+            <button id="saveItem" class="btn ok" type="button">Guardar</button>
+            <button id="deleteItem" class="btn danger" type="button">Eliminar</button>
+          </div>
+        </form>
+
+        <div class="panel" style="margin-top:1rem">
+          <h3>Ajustes</h3>
+          <form id="settingsForm" class="grid" style="grid-template-columns:1fr 1fr;gap:.6rem">
+            <label>Nombre de la marca<input id="s_brand" class="input" placeholder="Tu Marca"></label>
+            <label>WhatsApp (solo números, ej: 66590166)<input id="s_phone" class="input" placeholder="66590166"></label>
+            <label>Instagram<input id="s_insta" class="input" placeholder="https://instagram.com/..."></label>
+            <label>Facebook<input id="s_fb" class="input" placeholder="https://facebook.com/..."></label>
+            <label>Color primario<input id="s_primary" class="input" type="color" value="#f97316"></label>
+            <label>PIN Admin<input id="s_pin" class="input" placeholder="0000"></label>
+            <div style="grid-column:1/-1" class="flex">
+              <button id="saveSettings" class="btn ok" type="button">Guardar ajustes</button>
+              <button id="resetData" class="btn warning" type="button" title="Vuelve a cargar el backup inicial">Resetear a backup</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap" id="sectionsPanel" hidden>
+      <div class="panels" style="grid-template-columns:1fr 1fr">
+        <div class="panel">
+          <h3>Secciones</h3>
+          <div class="list" id="secList"></div>
+          <div class="flex" style="margin-top:.6rem">
+            <button id="addSection" class="btn ok">Nueva sección</button>
+          </div>
+          <small class="note">No puedes eliminar una sección que tenga ítems. Cambia primero los ítems de sección.</small>
+        </div>
+        <div class="panel">
+          <h3>Editar sección</h3>
+          <form id="secForm" class="grid" style="grid-template-columns:1fr 1fr;gap:.6rem">
+            <input type="hidden" id="sec_id">
+            <label>Nombre visible<input id="sec_name" class="input" placeholder="Ej: Postres"></label>
+            <label>Clave (slug)<input id="sec_key" class="input" placeholder="ej: postres"></label>
+            <label>Máx. pestañas<input id="sec_tabs" class="input" type="number" min="1" value="10"></label>
+            <div style="grid-column:1/-1" class="flex">
+              <button id="saveSection" class="btn ok" type="button">Guardar</button>
+              <button id="deleteSection" class="btn danger" type="button">Eliminar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="adminApp.js"></script>
+</body>
+</html>
